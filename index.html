@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>Reactals!</title>
+    <script src="https://fb.me/react-0.13.3.js" charset="utf-8"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js" charset="utf-8"></script>
+    <script src="./fractal.js" type="text/jsx"></script>
+    <link rel="stylesheet" href="./fractal.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <div class="container">
+      <div id="fractal"></div>
+    </div>
+
+    <script type="text/jsx">
+      React.render(
+        < Fractal size={400} topMargin={0} leftMargin={0} />,
+        document.getElementById("fractal")
+      );
+    </script>
+
+  </body>
+</html>
