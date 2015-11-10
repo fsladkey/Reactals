@@ -1,26 +1,43 @@
 var Fractal = React.createClass({
 
-  render: function() {
-    var style = {
+  getStyle: function() {
+    return {
       width: this.props.size,
       height: this.props.size,
       marginLeft: this.props.leftMargin,
       marginTop: this.props.topMargin
-    };
-
-    if (this.props.size > 10) {
-      return(
-        <div className="fractal" style={style} >
-          < Fractal size={ this.props.size / 2 } leftMargin={this.props.size} topMargin={this.props.size}/>
-          < Fractal size={ this.props.size / 2 }  leftMargin={(this.props.size / 2) - (this.props.size) - 2} topMargin={this.props.size }/>
-        </div>
-      )
-    } else {
-      return(
-        <div className="fractal" style={style} >
-        </div>
-      )
     }
+  },
+
+  getInitialState: function() {
+
+    return{renderDiv: (
+      <div className="fractal" style={this.getStyle()} >
+      </div>
+    )
+    }
+  },
+
+  componentDidMount: function() {
+    setTimeout(function() {
+      if (this.props.size > 2) {
+      this.setState({
+        renderDiv: (
+          <div className="fractal" style={this.getStyle()} >
+            < Fractal size={ this.props.size / 2 } leftMargin={this.props.size - (this.props.size / 4)} topMargin={this.props.size}/>
+            < Fractal size={ this.props.size / 2 }  leftMargin={(this.props.size / 2) - (this.props.size) + (this.props.size / 4)} topMargin={this.props.size }/>
+          </div>
+          )
+        })
+      }
+    }.bind(this), 1000)
+  },
+
+  render: function() {
+
+    return (
+      this.state.renderDiv
+    )
   }
 
 });
